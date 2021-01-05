@@ -1,9 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+/** @format */
+
+import logo from './logo.svg'
+import './App.css'
+import Navbar from '../src/components/Navbar/Navbar'
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +23,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

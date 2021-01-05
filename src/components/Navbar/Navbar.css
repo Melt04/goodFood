@@ -1,0 +1,28 @@
+/** @format */
+
+.list-menu {
+  text-align: left;
+  list-style: none;
+  display: flex;
+  width: 100%;
+}
+a {
+  outline-style: none;
+  color: white;
+}
+
+.list-menu li {
+  padding-left: 4%;
+}
+.list-menu li:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+.img-logo {
+  width: 30%;
+}
+.navbar-main {
+  display: flex;
+
+  justify-content: space-between;
+}
