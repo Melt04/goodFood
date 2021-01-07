@@ -1,17 +1,15 @@
 /** @format */
 
-import logo from './logo.svg'
 import './App.css'
 import Navbar from '../src/components/Navbar/Navbar'
 
-import Button from '../src/components/Button/Button'
+import ItemListContainer from '../src/components/ItemListContainer/ItemListContainer'
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-
-      <Button></Button>
+      <ItemListContainer message="Bienvenido a la tienda" />
     </div>
   )
 }
