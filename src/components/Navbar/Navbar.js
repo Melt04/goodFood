@@ -4,26 +4,26 @@ import React from 'react'
 import logo from '../../assets/logo.jpeg'
 import { AppBar, Toolbar, Button } from '@material-ui/core'
 import './Navbar.css'
-export default () => {
+const Navbar = () => {
   return (
     <>
       <AppBar>
-        <Toolbar className={'navbar-main'}>
+        <Toolbar className="navbar-main">
           <div>
-            <img src={logo} alt="logo" className={'img-logo'}></img>
+            <img src={logo} alt="logo" className="img-logo"></img>
           </div>
           <div>
-            <ul className={'list-menu'}>
+            <ul className="list-menu">
               <li>
                 {' '}
-                <a href=""> Productos Locales</a>
+                <a href="/"> Productos Locales</a>
               </li>
               <li>
-                <a href=""> Productos Importados</a>
+                <a href="/"> Productos Importados</a>
               </li>
               <li>
                 {' '}
-                <a href=""> Suplementos</a>
+                <a href="/"> Suplementos</a>
               </li>
             </ul>
           </div>
@@ -35,3 +35,5 @@ export default () => {
     </>
   )
 }
+
+export default Navbar
