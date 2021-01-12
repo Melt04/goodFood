@@ -4,7 +4,7 @@ import React, { createRef } from 'react'
 import logo from '../../assets/logo.jpeg'
 import { AppBar, Toolbar, Button, Menu, MenuItem } from '@material-ui/core'
 import ArrowDropDownOutlinedIcon from '@material-ui/icons/ArrowDropDownOutlined'
-import CartWidget from '../CartWidget/CartWidget'
+import CartWidget from '../../components/CartWidget/CartWidget'
 import './Navbar.css'
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
