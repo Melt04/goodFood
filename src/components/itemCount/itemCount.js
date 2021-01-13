@@ -1,34 +1,12 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Grid } from '@material-ui/core'
 import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone'
 import IndeterminateCheckBoxTwoToneIcon from '@material-ui/icons/IndeterminateCheckBoxTwoTone'
 import './ItemCount.css'
 
-const ItemCount = ({ stock, initial, articulo }) => {
-  const [actStock, setActStock] = useState(initial)
-  const INC = 'INCREMENT'
-  const DEC = 'DECREMENT'
-  const addCart = () => {
-    alert(`${articulo} agregado al carrito x ${actStock}`)
-  }
-  const changeStock = (op) => {
-    if (op === INC) {
-      if (actStock < stock) {
-        setActStock((prevState) => prevState + 1)
-      } else {
-        alert('No hay mas stock')
-      }
-    } else {
-      if (actStock > 1) {
-        setActStock((prevState) => prevState - 1)
-      } else {
-        alert('Cantidad en 1')
-      }
-    }
-  }
-
+const ItemCount = ({ initial, add, sub, articulo, addCart }) => {
   return (
     <div>
       <Grid container spacing={1}>
@@ -46,15 +24,15 @@ const ItemCount = ({ stock, initial, articulo }) => {
         <Grid item xs={4}>
           <IndeterminateCheckBoxTwoToneIcon
             style={{ fontSize: '40px', color: 'red' }}
-            onClick={() => changeStock(DEC)}
+            onClick={sub}
           ></IndeterminateCheckBoxTwoToneIcon>
         </Grid>
         <Grid item xs={4}>
-          <p>{actStock}</p>
+          <p>{initial}</p>
         </Grid>
         <Grid item xs={4}>
           <AddBoxTwoToneIcon
-            onClick={() => changeStock(INC)}
+            onClick={add}
             style={{ fontSize: '40px', color: 'green' }}
           />
         </Grid>

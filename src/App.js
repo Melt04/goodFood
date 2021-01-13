@@ -2,21 +2,18 @@
 
 import './App.css'
 
-import Navbar from './layout/Navbar/Navbar'
-import ItemCount from './components/itemCount/itemCount'
-import ItemListContainer from './layout/ItemListContainer/ItemListContainer'
+import Navbar from './components/Navbar/Navbar'
+import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <ItemListContainer message="Bienvenido a la tienda">
-        <ItemCount
-          initial={1}
-          stock={5}
-          articulo="Sumplemento dietetico"
-        ></ItemCount>
-      </ItemListContainer>
+      <ItemListContainer
+        message="Bienvenido a la tienda"
+        initial={1}
+        stock={5}
+      ></ItemListContainer>
     </div>
   )
 }
