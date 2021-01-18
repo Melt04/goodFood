@@ -22,12 +22,9 @@ function ItemListContainer({ message, initial, stock }) {
     })
     getProducts.then((data) => setProd(data))
   }, [])
-  const handlerCount = (actStock) => {
-    if (actStock > 0 && actStock <= stock) {
-      setCont(actStock)
-    } else {
-      alert('No se puede modificar el stock')
-    }
+  useEffect(() => console.log('hola item'))
+  const handlerCount = (newCount) => {
+    setCont(newCount)
   }
 
   const addCart = () => {
@@ -36,10 +33,11 @@ function ItemListContainer({ message, initial, stock }) {
   return (
     <React.Fragment>
       <div className="container-div-item">
-        <Typography variant="h3">{message}</Typography>
+        <Typography variant="h3">{}</Typography>
         <div className="counter-item">
           <ItemCount
             initial={cont}
+            max={stock}
             onAdd={handlerCount}
             addCart={addCart}
             articulo="Sumplemento dietetico"
