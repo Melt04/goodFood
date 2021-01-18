@@ -17,7 +17,10 @@ function ItemListContainer({ message, initial, stock }) {
   const [prod, setProd] = useState([])
 
   useEffect(() => {
-    setTimeout(() => setProd(PRODUCTS), 4000)
+    const getProducts = new Promise((resolve) => {
+      setTimeout(() => resolve(PRODUCTS), 3000)
+    })
+    getProducts.then((data) => setProd(data))
   }, [])
 
   const add = () => {
