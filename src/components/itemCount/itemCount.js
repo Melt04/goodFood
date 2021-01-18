@@ -6,7 +6,7 @@ import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone'
 import IndeterminateCheckBoxTwoToneIcon from '@material-ui/icons/IndeterminateCheckBoxTwoTone'
 import './ItemCount.css'
 
-const ItemCount = ({ initial, add, sub, articulo, addCart }) => {
+const ItemCount = ({ initial, onAdd, articulo, addCart }) => {
   return (
     <div>
       <Grid container spacing={1}>
@@ -24,7 +24,7 @@ const ItemCount = ({ initial, add, sub, articulo, addCart }) => {
         <Grid item xs={4}>
           <IndeterminateCheckBoxTwoToneIcon
             style={{ fontSize: '40px', color: 'red' }}
-            onClick={sub}
+            onClick={() => onAdd(initial - 1)}
           ></IndeterminateCheckBoxTwoToneIcon>
         </Grid>
         <Grid item xs={4}>
@@ -32,7 +32,7 @@ const ItemCount = ({ initial, add, sub, articulo, addCart }) => {
         </Grid>
         <Grid item xs={4}>
           <AddBoxTwoToneIcon
-            onClick={add}
+            onClick={() => onAdd(initial + 1)}
             style={{ fontSize: '40px', color: 'green' }}
           />
         </Grid>
