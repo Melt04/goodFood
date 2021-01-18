@@ -1,12 +1,24 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import { Typography } from '@material-ui/core'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 import ItemCount from '../../components/itemCount/itemCount'
+import ItemList from '../ItemList/ItemList'
+
 import './ItemListContainer.css'
+
+import PRODUCTS from '../../data/products.json'
 
 function ItemListContainer({ message, initial, stock }) {
   const [cont, setCont] = useState(initial)
+  const [prod, setProd] = useState([])
+
+  useEffect(() => {
+    setTimeout(() => setProd(PRODUCTS), 4000)
+  }, [])
 
   const add = () => {
     if (cont >= stock) {
@@ -34,6 +46,14 @@ function ItemListContainer({ message, initial, stock }) {
             articulo="Sumplemento dietetico"
           ></ItemCount>
         </div>
+        {prod.length > 0 ? (
+          <ItemList items={prod}></ItemList>
+        ) : (
+          <div>
+            <p>Loading</p>
+            <CircularProgress />
+          </div>
+        )}
       </div>
     </React.Fragment>
   )
