@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import ItemCount from '../../components/itemCount/itemCount'
-import ItemList from '../ItemList/ItemList'
+import ItemList from '../../components/ItemList/ItemList'
 
 import './ItemListContainer.css'
 

@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import Item from '../../components/Item/Item'
+import Item from '../Item/Item'
 import './ItemList.css'
 const ItemList = ({ items }) => {
   return (

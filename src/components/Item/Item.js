@@ -15,9 +15,11 @@ const Item = ({ item }) => {
         style={{ width: '40%', height: '30%' }}
       ></img>
       <p>{price}</p>
-      <textarea readOnly={true} style={{ resize: 'none' }}>
-        {description}
-      </textarea>
+      <textarea
+        value={description}
+        readOnly={true}
+        style={{ resize: 'none' }}
+      ></textarea>
     </div>
   )
 }

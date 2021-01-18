@@ -10,7 +10,7 @@ const ItemCount = ({ initial, add, sub, articulo, addCart }) => {
   return (
     <div>
       <Grid container spacing={1}>
-        <Grid item xs={12} spacing={3}>
+        <Grid item xs={12}>
           <p>{articulo}</p>
         </Grid>
       </Grid>
