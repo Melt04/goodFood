@@ -4,6 +4,7 @@ import './App.css'
 
 import Navbar from './components/Navbar/Navbar'
 import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         initial={1}
         stock={5}
       ></ItemListContainer>
+      <ItemDetailContainer></ItemDetailContainer>
     </div>
   )
 }
