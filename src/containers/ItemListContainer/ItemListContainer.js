@@ -14,6 +14,7 @@ import PRODUCTS from '../../data/products.json'
 
 function ItemListContainer({ message, initial, stock }) {
   const [prod, setProd] = useState([])
+  const [error, setError] = useState(null)
   const { categoryId } = useParams()
   useEffect(() => {
     const getProducts = new Promise((resolve) => {
@@ -26,7 +27,12 @@ function ItemListContainer({ message, initial, stock }) {
         const filteredProduct = data.filter(
           (product) => product.category === categoryId
         )
-        setProd(filteredProduct)
+        if (filteredProduct.length === 0) {
+          setError(true)
+          setProd([])
+        } else {
+          setProd(filteredProduct)
+        }
       }
     })
     return () => {
@@ -37,18 +43,13 @@ function ItemListContainer({ message, initial, stock }) {
   return (
     <React.Fragment>
       <div className="container-div-item">
-        {/*  <div className="counter-item">
-          <ItemCount
-            initial={cont}
-            max={stock}
-            onAdd={handlerCount}
-            addCart={addCart}
-            articulo="Sumplemento dietetico"
-          ></ItemCount>
-        </div> */}
-        {prod.length > 0 ? (
-          <ItemList items={prod}></ItemList>
-        ) : (
+        {error && (
+          <div className="div-notFound-category">
+            <h1>CATEGORY NOT FOUND</h1>
+          </div>
+        )}
+        {prod?.length > 0 && <ItemList items={prod}></ItemList>}
+        {prod.length === 0 && !error && (
           <div>
             <p>Loading</p>
             <CircularProgress />
