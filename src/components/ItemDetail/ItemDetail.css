@@ -1,0 +1,8 @@
+/** @format */
+
+.div-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8%;
+}

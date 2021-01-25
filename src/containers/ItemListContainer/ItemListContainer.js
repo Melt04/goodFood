@@ -1,8 +1,8 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
-import { Typography } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import ItemCount from '../../components/itemCount/itemCount'
@@ -15,13 +15,26 @@ import PRODUCTS from '../../data/products.json'
 function ItemListContainer({ message, initial, stock }) {
   const [cont, setCont] = useState(initial)
   const [prod, setProd] = useState([])
-
+  const { categoryId } = useParams()
+  console.log(prod)
   useEffect(() => {
     const getProducts = new Promise((resolve) => {
       setTimeout(() => resolve(PRODUCTS), 3000)
     })
-    getProducts.then((data) => setProd(data))
-  }, [])
+    getProducts.then((data) => {
+      if (!categoryId) {
+        setProd(data)
+      } else {
+        const filteredProduct = data.filter(
+          (product) => product.category === categoryId
+        )
+        setProd(filteredProduct)
+      }
+    })
+    return () => {
+      setProd([])
+    }
+  }, [categoryId])
   useEffect(() => console.log('hola item'))
   const handlerCount = (newCount) => {
     setCont(newCount)
@@ -30,11 +43,11 @@ function ItemListContainer({ message, initial, stock }) {
   const addCart = () => {
     alert(`Se agregaron ${cont} unidades`)
   }
+
   return (
     <React.Fragment>
       <div className="container-div-item">
-        <Typography variant="h3">{}</Typography>
-        <div className="counter-item">
+        {/*  <div className="counter-item">
           <ItemCount
             initial={cont}
             max={stock}
@@ -42,7 +55,7 @@ function ItemListContainer({ message, initial, stock }) {
             addCart={addCart}
             articulo="Sumplemento dietetico"
           ></ItemCount>
-        </div>
+        </div> */}
         {prod.length > 0 ? (
           <ItemList items={prod}></ItemList>
         ) : (

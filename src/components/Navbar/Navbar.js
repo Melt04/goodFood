@@ -1,12 +1,16 @@
 /** @format */
 
 import React, { createRef } from 'react'
+import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo.jpeg'
 import { AppBar, Toolbar, Button, Menu, MenuItem } from '@material-ui/core'
 import ArrowDropDownOutlinedIcon from '@material-ui/icons/ArrowDropDownOutlined'
 import CartWidget from '../CartWidget/CartWidget'
 import './Navbar.css'
+
+import PRODUCTS from '../../data/products.json'
+
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -48,9 +52,18 @@ const Navbar = () => {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 style={{ width: '100%' }}
               >
-                <MenuItem onClick={handleClose}>Importados</MenuItem>
-                <MenuItem onClick={handleClose}>Locales</MenuItem>
-                <MenuItem onClick={handleClose}>Suplementos</MenuItem>
+                {' '}
+                {PRODUCTS.map(({ category }) => {
+                  return (
+                    <MenuItem
+                      onClick={handleClose}
+                      component={Link}
+                      to={`/category/${category}`}
+                    >
+                      {category}
+                    </MenuItem>
+                  )
+                })}
               </Menu>
             </div>
 
