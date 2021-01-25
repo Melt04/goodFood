@@ -16,10 +16,10 @@ const getItem = () => {
 
 const ItemDetailContainer = () => {
   const { id } = useParams()
-
   const parsedId = parseInt(id)
   const [products, setProducts] = useState(null)
   const [error, setError] = useState(false)
+
   useEffect(() => {
     getItem().then((data) => {
       const filteredProduct = data.find((item) => item.id === parsedId)

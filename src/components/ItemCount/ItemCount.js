@@ -6,9 +6,8 @@ import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone'
 import IndeterminateCheckBoxTwoToneIcon from '@material-ui/icons/IndeterminateCheckBoxTwoTone'
 import './ItemCount.css'
 
-const ItemCount = ({ initial, max, onAdd, articulo, addCart }) => {
+const ItemCount = ({ initial, max, onAdd, addCart }) => {
   const [stock, setStock] = useState(initial)
-  useEffect(() => console.log('hola'))
   const add = () => {
     if (stock < max) {
       let increment = stock + 1
@@ -23,12 +22,11 @@ const ItemCount = ({ initial, max, onAdd, articulo, addCart }) => {
       onAdd(decrement)
     }
   }
+
   return (
     <div>
       <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <p>{articulo}</p>
-        </Grid>
+        <Grid item xs={12}></Grid>
       </Grid>
       <Grid
         className="container-grid-stock"
@@ -44,7 +42,7 @@ const ItemCount = ({ initial, max, onAdd, articulo, addCart }) => {
           ></IndeterminateCheckBoxTwoToneIcon>
         </Grid>
         <Grid item xs={4}>
-          <p>{initial}</p>
+          <p>{stock}</p>
         </Grid>
         <Grid item xs={4}>
           <AddBoxTwoToneIcon

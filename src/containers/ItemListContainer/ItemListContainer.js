@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-import ItemCount from '../../components/itemCount/itemCount'
+//import ItemCount from '../../components/ItemCount/ItemCount'
 import ItemList from '../../components/ItemList/ItemList'
 
 import './ItemListContainer.css'
@@ -13,10 +13,8 @@ import './ItemListContainer.css'
 import PRODUCTS from '../../data/products.json'
 
 function ItemListContainer({ message, initial, stock }) {
-  const [cont, setCont] = useState(initial)
   const [prod, setProd] = useState([])
   const { categoryId } = useParams()
-  console.log(prod)
   useEffect(() => {
     const getProducts = new Promise((resolve) => {
       setTimeout(() => resolve(PRODUCTS), 3000)
@@ -35,14 +33,6 @@ function ItemListContainer({ message, initial, stock }) {
       setProd([])
     }
   }, [categoryId])
-  useEffect(() => console.log('hola item'))
-  const handlerCount = (newCount) => {
-    setCont(newCount)
-  }
-
-  const addCart = () => {
-    alert(`Se agregaron ${cont} unidades`)
-  }
 
   return (
     <React.Fragment>

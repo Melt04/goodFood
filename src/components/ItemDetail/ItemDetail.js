@@ -1,9 +1,19 @@
 /** @format */
 
-import React from 'react'
+import React, { useState } from 'react'
+
 import './ItemDetail.css'
+
+import ItemCount from '../ItemCount/ItemCount'
 const ItemDetail = ({ item }) => {
-  const { pictureUrl, title, description, price } = item
+  const { pictureUrl, title, description, price, stock } = item
+  const [actStock, setActStock] = useState(1)
+  const handlerCount = (actStock) => {
+    setActStock(actStock)
+  }
+  const addCart = () => {
+    alert(`Se agregaron ${actStock} unidades`)
+  }
   return (
     <div className="item-container">
       <p>{title}</p>
@@ -18,6 +28,12 @@ const ItemDetail = ({ item }) => {
         readOnly={true}
         style={{ resize: 'none' }}
       ></textarea>
+      <ItemCount
+        initial={1}
+        max={stock}
+        onAdd={handlerCount}
+        addCart={addCart}
+      ></ItemCount>
     </div>
   )
 }

@@ -28,7 +28,9 @@ const Navbar = () => {
       <AppBar>
         <Toolbar className="navbar-main">
           <div>
-            <img src={logo} alt="logo" className="img-logo"></img>
+            <Link to="/">
+              <img src={logo} alt="logo" className="img-logo"></img>
+            </Link>
           </div>
           <div className="navbar-menu">
             <div>
