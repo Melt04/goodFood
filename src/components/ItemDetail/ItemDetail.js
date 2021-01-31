@@ -2,17 +2,26 @@
 
 import React, { useState } from 'react'
 
-import './ItemDetail.css'
+import { Button } from '@material-ui/core'
 
+import { useHistory } from 'react-router-dom'
+
+import './ItemDetail.css'
 import ItemCount from '../ItemCount/ItemCount'
 const ItemDetail = ({ item }) => {
   const { pictureUrl, title, description, price, stock } = item
   const [actStock, setActStock] = useState(1)
+  const [items, setItems] = useState(null)
+  const history = useHistory()
   const handlerCount = (actStock) => {
     setActStock(actStock)
   }
   const addCart = () => {
+    setItems(actStock)
     alert(`Se agregaron ${actStock} unidades`)
+  }
+  const checkOut = () => {
+    history.push('/cart')
   }
   return (
     <div className="item-container">
@@ -28,12 +37,26 @@ const ItemDetail = ({ item }) => {
         readOnly={true}
         style={{ resize: 'none' }}
       ></textarea>
-      <ItemCount
-        initial={1}
-        max={stock}
-        onAdd={handlerCount}
-        addCart={addCart}
-      ></ItemCount>
+      {items === null ? (
+        <ItemCount
+          initial={1}
+          max={stock}
+          onAdd={handlerCount}
+          addCart={addCart}
+        ></ItemCount>
+      ) : (
+        <div>
+          {' '}
+          <Button
+            variant="outlined"
+            style={{ marginTop: '2%' }}
+            color={'secondary'}
+            onClick={checkOut}
+          >
+            Finalizar compra
+          </Button>{' '}
+        </div>
+      )}
     </div>
   )
 }

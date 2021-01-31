@@ -32,6 +32,9 @@ function App() {
               stock={5}
             ></ItemListContainer>
           </Route>
+          <Route exact path="/cart">
+            <h1>Bienvenido a cart</h1>
+          </Route>
           <Route>
             <NotFound></NotFound>
           </Route>

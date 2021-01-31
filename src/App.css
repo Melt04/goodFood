@@ -30,6 +30,9 @@
 .App-link {
   color: #61dafb;
 }
+h1 {
+  margin-top: 10vh;
+}
 
 @keyframes App-logo-spin {
   from {
