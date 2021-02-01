@@ -1,6 +1,7 @@
 /** @format */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+
 import { Button, Grid } from '@material-ui/core'
 import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone'
 import IndeterminateCheckBoxTwoToneIcon from '@material-ui/icons/IndeterminateCheckBoxTwoTone'

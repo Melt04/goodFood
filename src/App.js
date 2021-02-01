@@ -8,38 +8,38 @@ import Navbar from './components/Navbar/Navbar'
 import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer'
 import NotFound from './Errors/NotFound/NotFound'
+import CartContextProvider from './context/CartContext/CartContextProvider'
+import Cart from './components/Cart/Cart'
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <ItemListContainer
-              message="Bienvenido a la tienda"
-              initial={1}
-              stock={5}
-            ></ItemListContainer>
-          </Route>
-          <Route exact path="/item/:id">
-            <ItemDetailContainer></ItemDetailContainer>
-          </Route>
-          <Route exact path="/category/:categoryId">
-            <ItemListContainer
-              message="Bienvenido a la tienda"
-              initial={1}
-              stock={5}
-            ></ItemListContainer>
-          </Route>
-          <Route exact path="/cart">
-            <h1>Bienvenido a cart</h1>
-          </Route>
-          <Route>
-            <NotFound></NotFound>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <CartContextProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <ItemListContainer
+                message="Bienvenido a la tienda"
+                initial={1}
+                stock={5}
+              ></ItemListContainer>
+            </Route>
+            <Route exact path="/item/:id">
+              <ItemDetailContainer></ItemDetailContainer>
+            </Route>
+            <Route exact path="/category/:categoryId">
+              <ItemListContainer message="Bienvenido a la tienda"></ItemListContainer>
+            </Route>
+            <Route exact path="/cart">
+              <Cart></Cart>
+            </Route>
+            <Route>
+              <NotFound></NotFound>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </CartContextProvider>
     </div>
   )
 }

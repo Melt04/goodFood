@@ -12,7 +12,7 @@ import './ItemListContainer.css'
 
 import PRODUCTS from '../../data/products.json'
 
-function ItemListContainer({ message, initial, stock }) {
+function ItemListContainer({ message }) {
   const [prod, setProd] = useState([])
   const [error, setError] = useState(null)
   const { categoryId } = useParams()

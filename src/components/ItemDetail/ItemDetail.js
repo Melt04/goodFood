@@ -4,15 +4,16 @@ import React, { useState } from 'react'
 
 import { Button } from '@material-ui/core'
 
-import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
+import { useCartContext } from '../../context/CartContext/CartContextProvider'
 import './ItemDetail.css'
 import ItemCount from '../ItemCount/ItemCount'
 const ItemDetail = ({ item }) => {
   const { pictureUrl, title, description, price, stock } = item
   const [actStock, setActStock] = useState(1)
   const [items, setItems] = useState(null)
-  const history = useHistory()
+  const { addItem } = useCartContext()
   const handlerCount = (actStock) => {
     setActStock(actStock)
   }
@@ -21,8 +22,9 @@ const ItemDetail = ({ item }) => {
     alert(`Se agregaron ${actStock} unidades`)
   }
   const checkOut = () => {
-    history.push('/cart')
+    addItem(item, actStock)
   }
+
   return (
     <div className="item-container">
       <p>{title}</p>
@@ -46,15 +48,16 @@ const ItemDetail = ({ item }) => {
         ></ItemCount>
       ) : (
         <div>
-          {' '}
-          <Button
-            variant="outlined"
-            style={{ marginTop: '2%' }}
-            color={'secondary'}
-            onClick={checkOut}
-          >
-            Finalizar compra
-          </Button>{' '}
+          <Link to="/cart">
+            <Button
+              variant="outlined"
+              style={{ marginTop: '2%' }}
+              color={'secondary'}
+              onClick={checkOut}
+            >
+              Finalizar compra
+            </Button>{' '}
+          </Link>
         </div>
       )}
     </div>
