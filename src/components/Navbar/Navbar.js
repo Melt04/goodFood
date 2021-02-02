@@ -70,7 +70,10 @@ const Navbar = () => {
             </div>
 
             <div>
-              <CartWidget> </CartWidget> <Button> Login</Button>
+              <Link to="/cart">
+                <CartWidget />
+              </Link>
+              <Button> Login</Button>
             </div>
           </div>
         </Toolbar>

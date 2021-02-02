@@ -32,10 +32,10 @@ function App() {
               <ItemListContainer message="Bienvenido a la tienda"></ItemListContainer>
             </Route>
             <Route exact path="/cart">
-              <Cart></Cart>
+              <Cart />
             </Route>
             <Route>
-              <NotFound></NotFound>
+              <NotFound />
             </Route>
           </Switch>
         </BrowserRouter>

@@ -8,10 +8,15 @@ export const useCartContext = () => useContext(CartContext)
 
 function CartContextProvider({ children }) {
   const [cart, setCart] = useState([])
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [length, setLength] = useState(0)
 
   const addItem = (item, quantity) => {
+    setLength(length + quantity)
+    setTotalPrice((prevState) => prevState + item.price * quantity)
     if (cart.length === 0) {
       setCart([{ item, quantity }])
+
       return
     }
     const { id } = item
@@ -29,14 +34,19 @@ function CartContextProvider({ children }) {
   }
   const removeItem = (id) => {
     const newCart = cart.filter(({ item }) => item.id !== id)
-    console.log(newCart)
+    const { quantity } = cart.find(({ item }) => item.id === id)
+    console.log(quantity)
     setCart(newCart)
+    setLength(length - quantity)
   }
   const clearCart = () => {
     setCart([])
+    setLength(0)
   }
   return (
-    <CartContext.Provider value={{ addItem, cart, clearCart, removeItem }}>
+    <CartContext.Provider
+      value={{ addItem, cart, clearCart, removeItem, totalPrice, length }}
+    >
       {children}
     </CartContext.Provider>
   )
