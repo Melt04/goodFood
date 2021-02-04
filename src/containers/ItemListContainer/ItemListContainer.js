@@ -5,41 +5,29 @@ import { useParams } from 'react-router-dom'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-//import ItemCount from '../../components/ItemCount/ItemCount'
 import ItemList from '../../components/ItemList/ItemList'
+import { getFirestore } from '../../firebase'
+
+import { useFetchFirebase } from '../../hooks'
 
 import './ItemListContainer.css'
 
-import PRODUCTS from '../../data/products.json'
-
-function ItemListContainer({ message }) {
-  const [prod, setProd] = useState([])
-  const [error, setError] = useState(null)
+function ItemListContainer() {
   const { categoryId } = useParams()
-  useEffect(() => {
-    const getProducts = new Promise((resolve) => {
-      setTimeout(() => resolve(PRODUCTS), 3000)
-    })
-    getProducts.then((data) => {
-      if (!categoryId) {
-        setProd(data)
-      } else {
-        const filteredProduct = data.filter(
-          (product) => product.category === categoryId
-        )
-        if (filteredProduct.length === 0) {
-          setError(true)
-          setProd([])
-        } else {
-          setProd(filteredProduct)
-        }
-      }
-    })
-    return () => {
-      setProd([])
-    }
-  }, [categoryId])
+  const [query, setQuery] = useState(null)
+  const { doc, error } = useFetchFirebase(query)
 
+  useEffect(() => {
+    const db = getFirestore()
+    const itemCollection = db.collection('items')
+    let queryFirebase
+    if (categoryId) {
+      queryFirebase = itemCollection.where('category', '==', categoryId).get()
+    } else {
+      queryFirebase = itemCollection.get()
+    }
+    setQuery(queryFirebase)
+  }, [categoryId])
   return (
     <React.Fragment>
       <div className="container-div-item">
@@ -48,16 +36,19 @@ function ItemListContainer({ message }) {
             <h1>CATEGORY NOT FOUND</h1>
           </div>
         )}
-        {prod?.length > 0 && <ItemList items={prod}></ItemList>}
-        {prod.length === 0 && !error && (
+        {doc?.length > 0 && <ItemList items={doc}></ItemList>}
+        {doc.length === 0 && !error && (
           <div>
             <p>Loading</p>
             <CircularProgress />
           </div>
         )}
       </div>
+      <button onClick={() => console.log(doc)}>Click me</button>
     </React.Fragment>
   )
 }
 
 export default ItemListContainer
+
+////

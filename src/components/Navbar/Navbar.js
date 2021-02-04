@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { createRef } from 'react'
+import React, { createRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo.jpeg'
@@ -9,11 +9,21 @@ import ArrowDropDownOutlinedIcon from '@material-ui/icons/ArrowDropDownOutlined'
 import CartWidget from '../CartWidget/CartWidget'
 import './Navbar.css'
 
-import PRODUCTS from '../../data/products.json'
+import { getFirestore } from '../../firebase'
+
+import { useFetchFirebase } from '../../hooks'
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [query, setQuery] = useState(null)
+  const { doc, loading } = useFetchFirebase(query)
 
+  useEffect(() => {
+    const db = getFirestore()
+    const categoryCollection = db.collection('category')
+    const queryFirebase = categoryCollection.get()
+    setQuery(queryFirebase)
+  }, [])
   const handleClick = () => {
     setAnchorEl(ref.current)
   }
@@ -54,18 +64,23 @@ const Navbar = () => {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 style={{ width: '100%' }}
               >
-                {' '}
-                {PRODUCTS.map(({ category }) => {
-                  return (
-                    <MenuItem
-                      onClick={handleClose}
-                      component={Link}
-                      to={`/category/${category}`}
-                    >
-                      {category}
-                    </MenuItem>
-                  )
-                })}
+                {loading ? (
+                  <MenuItem onClick={handleClose} component={Link}>
+                    loading...
+                  </MenuItem>
+                ) : (
+                  doc?.map(({ name }) => {
+                    return (
+                      <MenuItem
+                        onClick={handleClose}
+                        component={Link}
+                        to={`/category/${name}`}
+                      >
+                        {name}
+                      </MenuItem>
+                    )
+                  })
+                )}
               </Menu>
             </div>
 

@@ -10,7 +10,9 @@ import { useCartContext } from '../../context/CartContext/CartContextProvider'
 import './ItemDetail.css'
 import ItemCount from '../ItemCount/ItemCount'
 const ItemDetail = ({ item }) => {
-  const { pictureUrl, title, description, price, stock } = item
+  const [product] = item
+  const { pictureUrl, title, description, price, stock } = product
+
   const [actStock, setActStock] = useState(1)
   const [items, setItems] = useState(null)
   const { addItem } = useCartContext()
@@ -22,7 +24,7 @@ const ItemDetail = ({ item }) => {
     alert(`Se agregaron ${actStock} unidades`)
   }
   const checkOut = () => {
-    addItem(item, actStock)
+    addItem(product, actStock)
   }
 
   return (
@@ -56,7 +58,7 @@ const ItemDetail = ({ item }) => {
               onClick={checkOut}
             >
               Finalizar compra
-            </Button>{' '}
+            </Button>
           </Link>
         </div>
       )}
