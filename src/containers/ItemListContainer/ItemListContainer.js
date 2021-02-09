@@ -16,7 +16,7 @@ function ItemListContainer() {
   const { categoryId } = useParams()
   const [query, setQuery] = useState(null)
   const { doc, error } = useFetchFirebase(query)
-
+  console.log(categoryId)
   useEffect(() => {
     const db = getFirestore()
     const itemCollection = db.collection('items')

@@ -1,0 +1,7 @@
+/** @format */
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}

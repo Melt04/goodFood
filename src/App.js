@@ -9,7 +9,7 @@ import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer'
 import NotFound from './Errors/NotFound/NotFound'
 import CartContextProvider from './context/CartContext/CartContextProvider'
-import Cart from './components/Cart/Cart'
+import CartContainer from './containers/CartContainer/CartContainer.js'
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
               <ItemListContainer message="Bienvenido a la tienda"></ItemListContainer>
             </Route>
             <Route exact path="/cart">
-              <Cart />
+              <CartContainer />
             </Route>
             <Route>
               <NotFound />

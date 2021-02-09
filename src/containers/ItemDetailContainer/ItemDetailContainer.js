@@ -7,31 +7,24 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import { useFetchFirebase } from '../../hooks'
 import { getFirestore } from '../../firebase'
 
-//import PRODUCTS from '../../data/products.json'
 import ItemDetail from '../../components/ItemDetail/ItemDetail'
 import './ItemDetailContainer.css'
 
-/* 
-const getItem = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(PRODUCTS), 2000)
-  })
-} */
+/*
+ */
 
 const ItemDetailContainer = () => {
   const { id } = useParams()
-  const parseId = parseInt(id)
 
   const [query, setQuery] = useState(null)
-  // const [products, setProducts] = useState(null)
-  //const [error, setError] = useState(false)
+
   const { error, doc } = useFetchFirebase(query)
   useEffect(() => {
     const db = getFirestore()
     const itemCollection = db.collection('items')
-    const queryFirebase = itemCollection.where('id', '==', parseId).get()
+    const queryFirebase = itemCollection.where('id', '==', id).get()
     setQuery(queryFirebase)
-  }, [parseId])
+  }, [id])
 
   return (
     <div>
