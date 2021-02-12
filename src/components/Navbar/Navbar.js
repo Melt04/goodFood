@@ -65,18 +65,19 @@ const Navbar = () => {
                 style={{ width: '100%' }}
               >
                 {loading ? (
-                  <MenuItem onClick={handleClose} component={Link}>
+                  <MenuItem onClick={handleClose} component={Link} to="/">
                     loading...
                   </MenuItem>
                 ) : (
-                  doc?.map(({ name }) => {
+                  doc?.map((item, index) => {
                     return (
                       <MenuItem
                         onClick={handleClose}
                         component={Link}
-                        to={`/category/${name}`}
+                        to={`/category/${item.name}`}
+                        key={index}
                       >
-                        {name}
+                        {item.name}
                       </MenuItem>
                     )
                   })

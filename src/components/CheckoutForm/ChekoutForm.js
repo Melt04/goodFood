@@ -1,19 +1,20 @@
 /** @format */
 
 import React, { useState } from 'react'
-import { TextField } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
+import './CheckoutForm.css'
 function ChekoutForm({ checkout }) {
   const [buyerInfo, setBuyerInfo] = useState({
     name: '',
     email: '',
     phone: '',
   })
-
+  const { name, email, phone } = buyerInfo
   const onChangeHandler = (key, value) => {
     setBuyerInfo({ ...buyerInfo, [key]: value })
   }
   return (
-    <div>
+    <div className="checkout-form">
       <form onSubmit={(e) => checkout(e, buyerInfo)} className="checkout-form">
         <TextField
           variant="outlined"
@@ -28,6 +29,7 @@ function ChekoutForm({ checkout }) {
           label="Phone"
           name="phone"
           required
+          type={'number'}
           value={buyerInfo['phone']}
           onChange={({ target }) => onChangeHandler(target.name, target.value)}
         />
@@ -40,7 +42,13 @@ function ChekoutForm({ checkout }) {
           value={buyerInfo['email']}
           onChange={({ target }) => onChangeHandler(target.name, target.value)}
         />
-        <button>Checkout</button>
+        <Button
+          type="submit"
+          variant={'contained'}
+          disabled={!(phone && email && name)}
+        >
+          Checkout
+        </Button>
       </form>
     </div>
   )

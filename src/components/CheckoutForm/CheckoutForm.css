@@ -1,0 +1,11 @@
+/** @format */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+}
+.checkout-form > * {
+  width: 500px;
+}
