@@ -12,6 +12,7 @@ import CartContextProvider from './context/CartContext/CartContextProvider'
 import CartContainer from './containers/CartContainer/CartContainer.js'
 
 function App() {
+  console.log(process.env)
   return (
     <div className="App">
       <CartContextProvider>

@@ -21,7 +21,9 @@ const ItemDetail = ({ item }) => {
   }
   const addCart = () => {
     setItems(actStock)
-    alert(`Se agregaron ${actStock} unidades`)
+    alert(
+      `Se agregaron ${actStock} unidades al carrito. Para comfirmar la compra haga click en el boton Finalizar`
+    )
   }
   const checkOut = () => {
     addItem(product, actStock)
