@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Cart from '../../components/Cart/Cart'
-import './CartContainer.css'
+
 import { useCartContext } from '../../context/CartContext/CartContextProvider'
 import CheckoutForm from '../../components/CheckoutForm/ChekoutForm'
 import { getFirestore, Firebase } from '../../firebase'

@@ -1,8 +1,5 @@
 /** @format */
 
 .container-itemlist {
-  display: flex;
-  justify-content: space-around;
-  height: 40%;
-  width: 60%;
+  margin-top: 8%;
 }

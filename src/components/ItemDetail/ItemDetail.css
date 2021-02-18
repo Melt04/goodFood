@@ -1,8 +1,16 @@
 /** @format */
+.item-detail-card {
+  max-width: 450px;
+}
 
-.div-item-container {
+.item-card-content {
+  background-color: rgb(203, 224, 250);
+}
+.item-detail-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 8%;
+}
+.no-stock {
+  color: red;
 }

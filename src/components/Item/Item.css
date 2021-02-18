@@ -1,7 +1,13 @@
 /** @format */
 
 .item-container {
-  background-color: rgb(10, 119, 221);
-  margin: 4%;
-  width: 50%;
+  width: 80%;
+}
+
+.card-content {
+  background-color: rgb(185, 216, 255);
+}
+.img-cart {
+  height: 200px;
+  background-size: auto;
 }

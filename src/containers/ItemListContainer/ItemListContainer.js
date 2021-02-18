@@ -30,21 +30,18 @@ function ItemListContainer() {
   }, [categoryId])
   return (
     <React.Fragment>
-      <div className="container-div-item">
-        {error && (
-          <div className="div-notFound-category">
-            <h1>CATEGORY NOT FOUND</h1>
-          </div>
-        )}
-        {doc?.length > 0 && <ItemList items={doc}></ItemList>}
-        {doc.length === 0 && !error && (
-          <div>
-            <p>Loading</p>
-            <CircularProgress />
-          </div>
-        )}
-      </div>
-      <button onClick={() => console.log(doc)}>Click me</button>
+      {error && (
+        <div className="div-notFound-category">
+          <h1>CATEGORY NOT FOUND</h1>
+        </div>
+      )}
+      {doc?.length > 0 && <ItemList items={doc}></ItemList>}
+      {doc.length === 0 && !error && (
+        <div>
+          <p>Loading</p>
+          <CircularProgress />
+        </div>
+      )}
     </React.Fragment>
   )
 }

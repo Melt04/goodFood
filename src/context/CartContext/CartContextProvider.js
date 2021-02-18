@@ -33,12 +33,12 @@ function CartContextProvider({ children }) {
     return cart.findIndex(({ item }) => item.id === id)
   }
   const removeItem = (id) => {
-    const newCart = cart.filter(({ item }) => item.id !== id)
+    console.log(id)
+    setCart((prev) => prev.filter(({ item }) => item.id !== id))
     const { item, quantity } = cart.find(({ item }) => item.id === id)
-
     setTotalPrice((prevState) => prevState - item.price * quantity)
-    setCart(newCart)
-    setLength(length - quantity)
+
+    setLength((prev) => prev - quantity)
   }
   const clearCart = () => {
     setCart([])

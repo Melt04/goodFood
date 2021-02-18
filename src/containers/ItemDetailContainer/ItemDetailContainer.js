@@ -28,22 +28,20 @@ const ItemDetailContainer = () => {
 
   return (
     <div>
-      {error && (
-        <div className="div-notFound-product">
-          <h1>PRODUCT NOT FOUND</h1>{' '}
-        </div>
-      )}
       {doc.length === 0 && !error && (
         <div className="div-item-loading">
           <p>Loading</p>
           <CircularProgress />
         </div>
       )}
-      {doc?.length > 0 && (
-        <div className="div-item-container">
-          <ItemDetail item={doc} />
+
+      {error && (
+        <div className="div-notFound-product">
+          <h1>PRODUCT NOT FOUND</h1>{' '}
         </div>
       )}
+
+      {doc?.length > 0 && <ItemDetail item={doc} />}
     </div>
   )
 }
